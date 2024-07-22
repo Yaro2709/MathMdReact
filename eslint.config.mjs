@@ -12,7 +12,8 @@ export default [
             globals: {
                 ...globals.node,
                 ...globals.browser,
-                ...globals.es2024
+                ...globals.es2024,
+                ...globals.jest
             }
         }
     },
