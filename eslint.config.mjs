@@ -2,6 +2,7 @@ import eslintReact from "eslint-plugin-react";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
+import eslinti18next from "eslint-plugin-i18next";
 import tseslint from "typescript-eslint";
 import pluginJs from "@eslint/js";
 
@@ -15,10 +16,9 @@ export default [
             }
         }
     },
-    // Необходимы ли плагины: plugin:react/recommended и airbnb?
+    // Необходимы ли плагин airbnb?
     // Эти плагины часто дублируют правила:
     //...tseslint.configs.recommended,
-    //pluginJs.configs.recommended,
     { //parser
         languageOptions: {
             parser: tsParser
@@ -39,10 +39,34 @@ export default [
         plugins: {
             react: eslintReact,
             'typescript-eslint': typescriptEslint,
+            i18next: eslinti18next,
         }
     },
     { //rules
         rules: {
+            //eslintReact.configs.recommended.rules
+            'react/display-name': 2,
+            'react/jsx-key': 2,
+            'react/jsx-no-comment-textnodes': 2,
+            'react/jsx-no-duplicate-props': 2,
+            'react/jsx-no-target-blank': 2,
+            'react/jsx-no-undef': 2,
+            'react/jsx-uses-react': 2,
+            'react/jsx-uses-vars': 2,
+            'react/no-children-prop': 2,
+            'react/no-danger-with-children': 2,
+            'react/no-deprecated': 2,
+            'react/no-direct-mutation-state': 2,
+            'react/no-find-dom-node': 2,
+            'react/no-is-mounted': 2,
+            'react/no-render-return-value': 2,
+            'react/no-string-refs': 2,
+            'react/no-unescaped-entities': 2,
+            'react/no-unknown-property': 2,
+            'react/no-unsafe': 0,
+            'react/prop-types': 2,
+            'react/require-render-return': 2,
+            //Настроенные правила
             'react/jsx-indent': [2, 4], // отступы в jsx
             'react/jsx-indent-props': [2, 4], // правило для пропсов с отступами
             indent: [2, 4], // отступы для других файлов
@@ -59,6 +83,8 @@ export default [
             'import/no-extraneous-dependencies': 'off', // отключим запрет на импорт дев зависимостей
             'no-underscore-dangle': 'off', // разршение на нижние подчеркивание
             'max-len': ['error', { ignoreComments: true, code: 130 }], // длинные комментарии не дебажим
+            //eslinti18next.configs.recommended.rules
+            'i18next/no-literal-string': ['error', { markupOnly: true }], // правило, которое ругается если нет перевода при markupOnly - ругается только на отстутсвие переводов в jsx
         }
     },
     {
