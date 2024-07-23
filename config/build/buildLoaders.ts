@@ -39,7 +39,10 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {//н
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')), //опеределяем для css, что метод `css modules` применяется только для файлов, который содержат `.module.`
-                        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]' //генерация имен при `prod` версии и настоящие название ccs файлов при `dev` сборке.
+                        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]', //генерация имен при `prod` версии и настоящие название ccs файлов при `dev` сборке.
+                        // Поддержка старх именных импортов
+                        namedExport: false,
+                        exportLocalsConvention: 'as-is'
                     },
                 }
             },

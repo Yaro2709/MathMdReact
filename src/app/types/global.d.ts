@@ -1,11 +1,9 @@
-declare module '*.css' {
-    const classes: { [key: string]: string };
-    export = classes;
-}
-
 declare module '*.scss' {
-    const classes: { [key: string]: string };
-    export = classes;
+    interface IClassNames {
+        [className: string]: string
+    }
+    const classnames: IClassNames;
+    export = classnames;
 }
 
 declare module "*.png";

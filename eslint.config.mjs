@@ -45,6 +45,7 @@ export default [
     },
     { //rules
         rules: {
+            files: ['**/*.{ts,tsx}'], //какие файлы попадают под линтер
             //eslintReact.configs.recommended.rules
             'react/display-name': 2,
             'react/jsx-key': 2,
@@ -85,7 +86,13 @@ export default [
             'no-underscore-dangle': 'off', // разршение на нижние подчеркивание
             'max-len': ['error', { ignoreComments: true, code: 130 }], // длинные комментарии не дебажим
             //eslinti18next.configs.recommended.rules
-            'i18next/no-literal-string': ['error', { markupOnly: true }], // правило, которое ругается если нет перевода при markupOnly - ругается только на отстутсвие переводов в jsx
+            'i18next/no-literal-string': [ // правило, которое ругается если нет перевода при markupOnly - ругается только на отстутсвие переводов в jsx
+                'error',
+                {
+                    markupOnly: true,
+                    ignoreAttribute: ['data-testid'], // исключения
+                },
+            ],
         }
     },
     {
@@ -95,7 +102,11 @@ export default [
             }
         }
     },
+    // для определенных типов файлов переопределить свойства переводов
     {
-        files: ['**/*.{ts,tsx}'], //какие файлы попадают под линтер
-    }
+        files: ['**/src/**/*.test.{ts,tsx}'], // для каких именно файлов
+        rules: {
+            'i18next/no-literal-string': 'off', // какие именно правила
+        },
+    },
 ];
